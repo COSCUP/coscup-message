@@ -1,0 +1,71 @@
+digraph
+{
+  node [color=Blue, fontsize="20"]
+  edge [fontsize="8"]
+
+  chief [label="總召"]
+  program [label="議程組"]
+  service [label="場務組"]
+  sales [label="銷售組"]
+  marketing [label="行銷公關組"]
+  secretary [label="行政組"]
+  account [label="會計組"]
+  documentary [label="記錄組"]
+  network [label="線路組"]
+
+  //總召提供
+  chief -> {secretary program network} [label="大會\n總人數目標"]
+  chief -> account [label="預算清單"]
+  chief -> sales [label="預估\n贊助額目標"]
+  chief -> {program service sales marketing} [label="大會\n時間地點決議"]
+  
+  #銷售組提供
+  sales -> program [label="贊助商\n講師資料"]
+  sales -> secretary [label="贊助商\n公司名稱、人數"]
+  sales -> secretary [label="預估\n贊助票券數"]
+  sales -> marketing [label="贊助商\n手冊廣告"]
+  sales -> marketing [label="贊助商\n清單、描述、Logo"] #網站與手冊
+  sales -> service [label="贊助商\n攤位配置\n定稿"]
+  sales -> {account marketing} [label="贊助狀況\nLive Update"]
+  
+  #議程組提供
+  program -> secretary [label="講師資料"]
+  program -> secretary [label="主持人\n資料"]
+  program -> secretary [label="講者晚宴\n出席資料\n（講者及主持）"]
+  program -> {sales documentary} [label="議程 slots\n規劃"]
+  program -> {documentary marketing} [label="議程定稿"]
+  program -> marketing [label="議程摘要與\n講者資料"] //網站與手冊
+  program -> sales [label="workshop\n規劃"]
+  program -> {service network} [label="講者\n網路需求"]
+  program -> {chief sales marketing} [label="年度主題"]
+  program -> secretary [label="講者補助\n內容與名單\n（含 Keynote）"]
+
+  #場務組提供
+  service -> network [label="場地圖"]
+  service -> {sales marketing} [label="攤位\n配置規劃"]
+  service -> {sales marketing} [label="攤位\n說明書"] //marketing 是為了社群攤位
+  service -> {sales network marketing} [label="物流說明"]
+  service -> documentary [label="各攤位配置\n定稿"]
+  service -> network [label="報到處\n配置規劃"]
+  service -> {program network} [label="會議室\n配置規劃"]
+  service -> secretary [label="場地\n行前注意事項"]
+
+  #行政組提供
+  secretary -> marketing [label="所有人員\n名牌資料"]
+  secretary -> service [label="所有人員\n報到資料"]
+  secretary -> marketing [label="工作人員\nT-shirt 尺寸"]
+  secretary -> {chief marketing} [label="工作人員\n名單"]
+  secretary -> program [label="講者晚宴\n時間地點"]
+
+  #會計組提供
+  account -> chief [label="帳務月報"]
+  account -> chief [label="帳務結報"]
+
+  #線路組提供
+  network -> service [label="攤位\n電力說明"]
+  network -> secretary [label="網路電力\n行前注意事項"]
+  
+  #行銷公關組提供
+  marketing -> sales [label="行銷時程規劃\n（含新聞稿）"]
+  marketing -> service [label="社群攤位\n配置定稿"]
+}
