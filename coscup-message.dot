@@ -1,7 +1,8 @@
 digraph
 {
-  node [color=Blue, fontsize="20"]
-  edge [fontsize="8"]
+  graph [ dpi=300, fontname="LiHei Pro"]
+  node [color=Blue, fontsize="20", fontname="LiHei Pro"]
+  edge [fontsize="8", fontname="LiHei Pro"]
 
   chief [label="總召"]
   program [label="議程組"]
@@ -19,16 +20,16 @@ digraph
   chief -> sales [label="預估\n贊助額目標"]
   chief -> {program service sales marketing} [label="大會\n時間地點決議"]
   
-  #銷售組提供
+  //銷售組提供
   sales -> program [label="贊助商\n講師資料"]
   sales -> secretary [label="贊助商\n公司名稱、人數"]
   sales -> secretary [label="預估\n贊助票券數"]
   sales -> marketing [label="贊助商\n手冊廣告"]
-  sales -> marketing [label="贊助商\n清單、描述、Logo"] #網站與手冊
+  sales -> marketing [label="贊助商\n清單、描述、Logo"] //網站與手冊
   sales -> service [label="贊助商\n攤位配置\n定稿"]
   sales -> {account marketing} [label="贊助狀況\nLive Update"]
   
-  #議程組提供
+  //議程組提供
   program -> secretary [label="講師資料"]
   program -> secretary [label="主持人\n資料"]
   program -> secretary [label="講者晚宴\n出席資料\n（講者及主持）"]
@@ -40,7 +41,7 @@ digraph
   program -> {chief sales marketing} [label="年度主題"]
   program -> secretary [label="講者補助\n內容與名單\n（含 Keynote）"]
 
-  #場務組提供
+  //場務組提供
   service -> network [label="場地圖"]
   service -> {sales marketing} [label="攤位\n配置規劃"]
   service -> {sales marketing} [label="攤位\n說明書"] //marketing 是為了社群攤位
@@ -50,22 +51,22 @@ digraph
   service -> {program network} [label="會議室\n配置規劃"]
   service -> secretary [label="場地\n行前注意事項"]
 
-  #行政組提供
+  //行政組提供
   secretary -> marketing [label="所有人員\n名牌資料"]
   secretary -> service [label="所有人員\n報到資料"]
   secretary -> marketing [label="工作人員\nT-shirt 尺寸"]
   secretary -> {chief marketing} [label="工作人員\n名單"]
   secretary -> program [label="講者晚宴\n時間地點"]
 
-  #會計組提供
+  //會計組提供
   account -> chief [label="帳務月報"]
   account -> chief [label="帳務結報"]
 
-  #線路組提供
+  //線路組提供
   network -> service [label="攤位\n電力說明"]
   network -> secretary [label="網路電力\n行前注意事項"]
   
-  #行銷公關組提供
+  //行銷公關組提供
   marketing -> sales [label="行銷時程規劃\n（含新聞稿）"]
   marketing -> service [label="社群攤位\n配置定稿"]
 }
