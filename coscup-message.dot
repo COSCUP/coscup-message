@@ -13,6 +13,8 @@ digraph
   account [label="會計組"]
   documentary [label="記錄組"]
   network [label="線路組"]
+  public [label="公開"]
+  all [label="所有(placeholder)"]
 
   //總召提供
   chief -> {secretary program network} [label="大會\n總人數目標"]
@@ -22,12 +24,21 @@ digraph
   
   //銷售組提供
   sales -> program [label="贊助商\n講師資料"]
-  sales -> secretary [label="贊助商\n公司名稱、人數"]
+  sales -> {secretary marketing} [label="贊助商\n公司名稱 (中英文)"]
+  sales -> marketing [label="贊助商\n公司人數"]
   sales -> secretary [label="預估\n贊助票券數"]
   sales -> marketing [label="贊助商\n手冊廣告"]
   sales -> marketing [label="贊助商\n清單、描述、Logo"] //網站與手冊
   sales -> service [label="贊助商\n攤位配置\n定稿"]
   sales -> {account marketing} [label="贊助狀況\nLive Update"]
+  sales -> secretary [label="講者補助計劃名單與補助額度"] //應該給 pro
+  sales -> account [label="每週新增贊助商"]
+  sales -> account [label="贊助商發票需求"]
+  sales -> account [label="個人贊助發票需求"]
+  sales -> account [label="個人贊助對賬"]
+  sales -> program [label="hands on workshop 贊助商的資訊"]
+  sales -> service [label="贊助商物流資訊"]
+  sales -> {program chief marketing} [label="Call for Sponsorship Draft"]
   
   //議程組提供
   program -> secretary [label="講師資料"]
@@ -38,11 +49,18 @@ digraph
   program -> marketing [label="議程摘要與\n講者資料"] //網站與手冊
   program -> sales [label="workshop\n規劃"]
   program -> {service network} [label="講者\n網路需求"]
-  program -> {chief sales marketing} [label="年度主題"]
+  program -> service [label="講者場地需求"]
+  program -> {chief sales marketing public} [label="年度主題 (& CfP)"]
+  program -> marketing [label="徵稿宣傳訊息"]
   program -> secretary [label="講者補助\n內容與名單\n（含 Keynote）"]
+  program -> account [label="hands on 發票"]
+  program -> documentary [label="錄影授權資訊"]
+  program -> marketing [label="keynote 講者宣傳資料"]
+
 
   //場務組提供
   service -> network [label="場地圖"]
+  service -> network [label="外場電力網路需求狀況（報到、餐飲、攤位）"]
   service -> {sales marketing} [label="攤位\n配置規劃"]
   service -> {sales marketing} [label="攤位\n說明書"] //marketing 是為了社群攤位
   service -> {sales network marketing} [label="物流說明"]
@@ -57,6 +75,9 @@ digraph
   secretary -> marketing [label="工作人員\nT-shirt 尺寸"]
   secretary -> {chief marketing} [label="工作人員\n名單"]
   secretary -> program [label="講者晚宴\n時間地點"]
+  secretary -> sales [label="個人贊助名單 (後續聯繫)"]
+  {all} -> secretary [label="Google Groups 設定"]
+  {all} -> secretary [label="工作人員名單"]
 
   //會計組提供
   account -> chief [label="帳務月報"]
@@ -69,4 +90,6 @@ digraph
   //行銷公關組提供
   marketing -> sales [label="行銷時程規劃\n（含新聞稿）"]
   marketing -> service [label="社群攤位\n配置定稿"]
+  marketing -> sales [label="T-shirt Deadline (個人贊助)"]
+  {all} -> marketing [label="名片資訊"]
 }
